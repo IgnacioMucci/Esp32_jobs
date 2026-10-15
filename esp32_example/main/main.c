@@ -91,44 +91,53 @@ static esp_err_t period_save(uint64_t value)
     return err;
 }
 
-void setterPeriod(int sockfd, char *argument)
+static esp_err_t check_String(const char *argument, uint32_t *seconds,
+                              char *response)
 {
-    if (argument != NULL){ // if arg not null
+    if (argument == NULL) {
+        sprintf(response, "arg null\n");
+        return ESP_ERR_INVALID_ARG;
+    }
+
     char *end;
-    errno = 0;
-    if (strchr(argument, '-') != NULL) { // Checking if number is negative
-    write(sockfd, "No negative\n", 13);
-    return;
+    long long value = strtoll(argument, &end, 10);
+
+    if (end == argument) {      // If it doesnt have anything or there's something else than numbers 
+        sprintf(response, "Only numbers\n");
+        return ESP_ERR_INVALID_ARG;
     }
-    unsigned long long time_sleep = strtoull(argument, &end, 10); // Variable of uint64, strtoull changes the string to uint64 in base 10 
-    if (end == argument) { // the text starts with something else than numbers
-        write(sockfd, "Only numbers\n", 14);
-        return;
-    } else if (errno == ERANGE) { // if the string passed the limit of uint64
-        write(sockfd, "Max passed\n", 12);
-        return;
-    } else if (*end != '\0') { // if the string has other chars than are not numbers
-        write(sockfd, "Only numbers\n", 14);
-        return;
+    if (value < 0) {
+        sprintf(response, "No negative\n");
+        return ESP_ERR_INVALID_ARG; // If its negative
     }
-    if(time_sleep > MAX_TIME ){ // set a maximum time in seconds
-        write(sockfd, "Max passed\n", 12);
-        return;
+    if (value > MAX_TIME) {// If it passes the max input
+        sprintf(response, "Max passed\n");
+        return ESP_ERR_INVALID_SIZE;
     }
-    time_sleep = time_sleep * 1000000ULL; // changes from secons to us
-       time_deepsleep = time_sleep;
-       period_save(time_deepsleep);
-    write(sockfd, "done\n", 6);
-    return;
-    }
-    write(sockfd, "arg null\n", 10);
+
+    *seconds = (uint32_t)value;
+    return ESP_OK;
+}
+
+
+void setterPeriod(int sockfd, char *argument)
+{   
+    char response[25];
+    uint32_t seconds;
+
+   if (check_String(argument, &seconds, response) == ESP_OK) {
+     time_deepsleep = seconds * 1000000ULL; // changes from secons to us
+     period_save(time_deepsleep);
+     sprintf(response, "done\n");   
+    }    
+    write(sockfd, response, strlen(response));
 }
 
 void getterPeriod(int sockfd, char *argument)
 {
-    char response[24];
+    char response[25];
     uint64_t period_seconds = time_deepsleep / 1000000ULL; // Chaging from us to s
-    sprintf(response, "%lld\n", period_seconds);
+    sprintf(response, "%llu\n", (unsigned long long)period_seconds);
     write(sockfd, response, strlen(response));
 }
 
@@ -136,42 +145,27 @@ void getterPeriod(int sockfd, char *argument)
 
 void setterDeepSleep(int sockfd, char *argument)
 {   
-   unsigned long long time_us; 
-    if (argument != NULL){ // if arg not null
-        if (strcmp(argument, "0") == 0){
+    char response[25];
+    uint32_t seconds; 
+        if( argument != NULL && strcmp(argument, "0") == 0){
+        uint64_t time_us;    
         period_load(&time_us, 0); // Going to nvs to search for the value
-        write(sockfd, "Sleeping\n", 10);
+        sprintf(response, "Sleeping\n");    
+        write(sockfd, response, strlen(response));
         vTaskDelay(pdMS_TO_TICKS(500));
         esp_sleep_enable_timer_wakeup(time_us);// Configure the time to sleep
         esp_deep_sleep_start();// start sleeping
-        }
-    char *end;
-    errno = 0;
-    if (strchr(argument, '-') != NULL) { // Checking if number is negative
-    write(sockfd, "No negative\n", 13);
-    return;
-    }
-    time_us = strtoull(argument, &end, 10); // Variable of uint64, strtoull changes the string to uint64 in base 10 
-    if (end == argument) { // the text starts with something else than numbers
-        write(sockfd, "Only numbers\n", 14);
         return;
-    } else if (errno == ERANGE) { // if the string passed the limit of uint64
-        write(sockfd, "Max passed\n", 12);
-        return;
-    } else if (*end != '\0') { // if the string has other chars than are not numbers
-        write(sockfd, "Only numbers\n", 14);
+        } 
+        if (check_String(argument, &seconds, response) != ESP_OK) {
+        write(sockfd, response, strlen(response));
         return;
     }
-    if(time_us > MAX_TIME ){ // set a maximum time in seconds
-        write(sockfd, "Max passed\n", 12);
-        return;
-    }
-    time_us = time_us * 1000000ULL; // changes from secons to us   
-    write(sockfd, "Sleeping\n", 10);
-    esp_sleep_enable_timer_wakeup(time_us); // Configure the time to sleep
-    esp_deep_sleep_start(); // start sleeping
-    return;
-    }
+    sprintf(response, "Sleeping\n");
+    write(sockfd, response, strlen(response));
+    vTaskDelay(pdMS_TO_TICKS(500));
+    esp_sleep_enable_timer_wakeup(seconds * 1000000ULL);  // s -> us
+    esp_deep_sleep_start(); 
 }
 
 static void do_processQuery(const int sock)
