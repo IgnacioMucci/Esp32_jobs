@@ -28,17 +28,16 @@
 #include "esp_sleep.h"
 #include <string.h>
 #include <string_check.h>
+#include <nvs_period.h>
+#include <period_handlers.h>
+#include <deepsleep_handlers.h>
 
 #define PORT CONFIG_EXAMPLE_PORT
-
-#define NVS_NAMESPACE "poma"
-#define NVS_KEY_PERIOD "period"
 
 
 static const char *TAG = "example";
 
 int GlobalVar = 0;
-uint64_t time_deepsleep = 0;
 Topic *topicHead;
 
 void setterGlobalVar(int sockfd, char *argument)
@@ -53,89 +52,6 @@ void getterGlobalVar(int sockfd, char *argument)
     char response[10];
     sprintf(response, "%d\n", GlobalVar);
     write(sockfd, response, strlen(response));
-}
-
-// Reads the value stored;if it doesnt exits uses the default
-static esp_err_t period_load(uint64_t *out, uint64_t default_val)
-{
-    nvs_handle_t h;
-    esp_err_t err = nvs_open(NVS_NAMESPACE, NVS_READONLY, &h);
-    if (err != ESP_OK) {  //namespace still doesnt exists
-        *out = default_val;
-        return err;
-    }
-    err = nvs_get_u64(h, NVS_KEY_PERIOD, out);
-    if (err != ESP_OK) {    // Didnt find the value
-        *out = default_val;
-    }
-    nvs_close(h);
-    return err;
-}
-
-// Changes the value if the value is diferent
-static esp_err_t period_save(uint64_t value)
-{
-    nvs_handle_t h;
-    esp_err_t err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &h);
-    if (err != ESP_OK) return err;
-
-    uint64_t stored;
-    if (nvs_get_u64(h, NVS_KEY_PERIOD, &stored) == ESP_OK && stored == value) { // IF the value that im trying to store is the same that was stored
-        nvs_close(h);
-        return ESP_OK;                // I dont change it
-    }
-    err = nvs_set_u64(h, NVS_KEY_PERIOD, value); // changes the value
-    if (err == ESP_OK) err = nvs_commit(h); // Puts it in the flash
-    nvs_close(h);
-    return err;
-}
-
-void setterPeriod(int sockfd, char *argument)
-{   
-    char response[25];
-    uint32_t seconds;
-
-   if (check_String(argument, &seconds, response) == ESP_OK) {
-     time_deepsleep = seconds * 1000000ULL; // changes from secons to us
-     period_save(time_deepsleep);
-     sprintf(response, "done\n");   
-    }    
-    write(sockfd, response, strlen(response));
-}
-
-void getterPeriod(int sockfd, char *argument)
-{
-    char response[25];
-    uint64_t period_seconds = time_deepsleep / 1000000ULL; // Chaging from us to s
-    sprintf(response, "%llu\n", (unsigned long long)period_seconds);
-    write(sockfd, response, strlen(response));
-}
-
-
-
-void setterDeepSleep(int sockfd, char *argument)
-{   
-    char response[25];
-    uint32_t seconds; 
-        if( argument != NULL && strcmp(argument, "0") == 0){
-        uint64_t time_us;    
-        period_load(&time_us, 0); // Going to nvs to search for the value
-        sprintf(response, "Sleeping\n");    
-        write(sockfd, response, strlen(response));
-        vTaskDelay(pdMS_TO_TICKS(500));
-        esp_sleep_enable_timer_wakeup(time_us);// Configure the time to sleep
-        esp_deep_sleep_start();// start sleeping
-        return;
-        } 
-        if (check_String(argument, &seconds, response) != ESP_OK) {
-        write(sockfd, response, strlen(response));
-        return;
-    }
-    sprintf(response, "Sleeping\n");
-    write(sockfd, response, strlen(response));
-    vTaskDelay(pdMS_TO_TICKS(500));
-    esp_sleep_enable_timer_wakeup(seconds * 1000000ULL);  // s -> us
-    esp_deep_sleep_start(); 
 }
 
 static void do_processQuery(const int sock)
