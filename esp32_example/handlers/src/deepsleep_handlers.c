@@ -23,17 +23,14 @@ void setterDeepSleep(int sockfd, char *argument)
      if (seconds == 0) { 
         period_load(&time_us, 0); // Going to nvs to search for the value
         if (time_us == 0) {                    // nunca se seteó (o se seteó en 0)
-            sprintf(response, "Value 0\n");
             write(sockfd, response, strlen(response));
             return;}
-        sprintf(response, "Sleeping\n");    
         write(sockfd, response, strlen(response));
         vTaskDelay(pdMS_TO_TICKS(500));
         esp_sleep_enable_timer_wakeup(time_us);// Configure the time to sleep
         esp_deep_sleep_start();// start sleeping
         return;
      }
-    sprintf(response, "Sleeping\n");
     write(sockfd, response, strlen(response));
     vTaskDelay(pdMS_TO_TICKS(500));
     esp_sleep_enable_timer_wakeup(seconds * 1000000ULL);  // s -> us

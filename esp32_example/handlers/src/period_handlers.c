@@ -15,8 +15,7 @@ void setterPeriod(int sockfd, char *argument)
 
    if (check_String(argument, &seconds, response) == ESP_OK) {
      time_deepsleep = seconds * 1000000ULL; // changes from secons to us
-     period_save(time_deepsleep);
-     sprintf(response, "done\n");   
+     period_save(time_deepsleep);   
     }    
     write(sockfd, response, strlen(response));
 }
