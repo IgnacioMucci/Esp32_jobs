@@ -1,0 +1,8 @@
+# Default PoMA command routine:
+0.0|*
+1.5|?g_var
+3.0|=g_var 100
+6.0|?g_var
+8.0|=GlobalVar 50
+9.0|?g_var
+10.0|?GlobalVar

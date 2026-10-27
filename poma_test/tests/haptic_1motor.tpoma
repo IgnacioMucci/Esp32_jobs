@@ -1,0 +1,29 @@
+# Example of vibration commands using 1 haptic motor.
+
+0.0|*
+0.0|=enabled_motors 1,0,0,0,0,0
+0.0|=intensity 0
+
+1.0|=intensity 10
+4.0|=intensity 20
+7.0|=intensity 30
+10.0|=intensity 40
+13.0|=intensity 50
+16.0|=intensity 60
+19.0|=intensity 70
+22.0|=intensity 80
+25.0|=intensity 90
+28.0|=intensity 100
+
+31.0|=intensity 90
+34.0|=intensity 80
+37.0|=intensity 70
+40.0|=intensity 60
+43.0|=intensity 50
+46.0|=intensity 40
+49.0|=intensity 30
+52.0|=intensity 20
+55.0|=intensity 10
+
+58.0|=intensity 0
+58.0|=enabled_motors 0,0,0,0,0,0

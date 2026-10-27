@@ -1,0 +1,103 @@
+# Example of vibration commands using 1 haptic motor;
+# alternating the active motor between the first 4.
+
+0.0|*
+
+# 1st Motor
+# ======================
+0.0|=enabled_motors 1,0,0,0,0,0
+0.0|=intensity 0
+1.0|=intensity 10
+2.0|=intensity 20
+3.0|=intensity 30
+4.0|=intensity 40
+5.0|=intensity 50
+6.0|=intensity 60
+7.0|=intensity 70
+8.0|=intensity 80
+9.0|=intensity 90
+10.0|=intensity 100
+11.0|=intensity 90
+12.0|=intensity 80
+13.0|=intensity 70
+14.0|=intensity 60
+15.0|=intensity 50
+16.0|=intensity 40
+17.0|=intensity 30
+18.0|=intensity 20
+19.0|=intensity 10
+20.0|=intensity 0
+
+# 2nd Motor
+# ======================
+21.0|=enabled_motors 0,1,0,0,0,0
+22.0|=intensity 10
+23.0|=intensity 20
+24.0|=intensity 30
+25.0|=intensity 40
+26.0|=intensity 50
+27.0|=intensity 60
+28.0|=intensity 70
+29.0|=intensity 80
+30.0|=intensity 90
+31.0|=intensity 100
+32.0|=intensity 90
+33.0|=intensity 80
+34.0|=intensity 70
+35.0|=intensity 60
+36.0|=intensity 50
+37.0|=intensity 40
+38.0|=intensity 30
+39.0|=intensity 20
+40.0|=intensity 10
+41.0|=intensity 0
+
+# 3rd Motor
+# ======================
+42.0|=enabled_motors 0,0,1,0,0,0
+43.0|=intensity 10
+44.0|=intensity 20
+45.0|=intensity 30
+46.0|=intensity 40
+47.0|=intensity 50
+48.0|=intensity 60
+49.0|=intensity 70
+50.0|=intensity 80
+51.0|=intensity 90
+52.0|=intensity 100
+53.0|=intensity 90
+54.0|=intensity 80
+55.0|=intensity 70
+56.0|=intensity 60
+57.0|=intensity 50
+58.0|=intensity 40
+59.0|=intensity 30
+60.0|=intensity 20
+61.0|=intensity 10
+62.0|=intensity 0
+
+# 4th Motor
+# ======================
+63.0|=enabled_motors 0,0,0,1,0,0
+64.0|=intensity 10
+65.0|=intensity 20
+66.0|=intensity 30
+67.0|=intensity 40
+68.0|=intensity 50
+69.0|=intensity 60
+70.0|=intensity 70
+71.0|=intensity 80
+72.0|=intensity 90
+73.0|=intensity 100
+74.0|=intensity 90
+75.0|=intensity 80
+76.0|=intensity 70
+77.0|=intensity 60
+78.0|=intensity 50
+79.0|=intensity 40
+80.0|=intensity 30
+81.0|=intensity 20
+82.0|=intensity 10
+83.0|=intensity 0
+
+83.0|=enabled_motors 0,0,0,0,0,0
