@@ -1,0 +1,7 @@
+0.0|=Period 5
+# Valid responde: done
+2.0|=DeepSleep 0
+# Valid response goes to sleep for 5 sec
+# We wait more than 5 secs so that the device can restart
+15.0|=Period 5
+#Valid Respones: Doesnt work because the connection was cutted

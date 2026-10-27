@@ -1,0 +1,33 @@
+0.0|?Period
+2.0|=Period 10
+#valid response: done
+4.0|?Period
+#valid response: 10
+6.0|=Period 0
+# valid response: done
+8.0|?Period
+#valid response: 10
+10.0|=Period 1
+#valid response:done
+12.0|?Period
+# valid response: 1
+14.0|=Period abc
+#valid response:done
+16.0|?Period
+# valid response: 1
+18.0|=Period -5
+#valid response:done
+20.0|?Period
+# valid response: 1
+22.0|=Period
+#valid response:done
+24.0|?Period
+# valid response: 1
+26.0|=Period 4294967295
+#valid response:done
+28.0|?Period
+# valid response: 1
+30.0|=Period 4294967296
+#valid response:done
+32.0|?Period
+# valid response: 1

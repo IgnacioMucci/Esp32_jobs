@@ -1,0 +1,4 @@
+# Last line, its goes to sleep for n second and becuase of that the connection is cutted
+0.0|=DeepSleep 5
+8.0|=Period 5
+#Valid response: It doesnt work
