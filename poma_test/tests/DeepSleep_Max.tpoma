@@ -1,6 +1,2 @@
-0.0|=DeepSleep 2529201
-#Valid response: doesnt go to sleep
-2.0|=DeepSleep 4294967295
-#Valid response: doesnt go to sleep
-4.0|?Period
-#Valid response: Number of period at this moment
+0.0|=DeepSleep 2529200
+# Valid response: Sleep for the amount of time check_string has like MAX
