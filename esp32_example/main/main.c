@@ -31,6 +31,7 @@
 #include <nvs_period.h>
 #include <period_handlers.h>
 #include <deepsleep_handlers.h>
+#include <ultralite_handlers.h>
 
 #define PORT CONFIG_EXAMPLE_PORT
 
@@ -189,6 +190,7 @@ void app_main(void)
     topicHead = createTopic("GlobalVar", getterGlobalVar, setterGlobalVar);
     addTopic(topicHead, createTopic("Period", getterPeriod, setterPeriod));
     addTopic(topicHead, createTopic("DeepSleep", NULL, setterDeepSleep));
+    addTopic(topicHead, createTopic("Ultralite", NULL, setterUltralite));
 
 #ifdef CONFIG_EXAMPLE_IPV4
     xTaskCreate(tcp_server_task, "tcp_server", 4096, (void *)AF_INET, 5, NULL);
