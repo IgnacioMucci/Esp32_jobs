@@ -4,4 +4,4 @@ idf_component_register(
          "src/ultralite_handlers.c"
          "src/ultralite_frame.c"
     INCLUDE_DIRS "inc"
-    PRIV_REQUIRES utils)
+    PRIV_REQUIRES utils poma)
