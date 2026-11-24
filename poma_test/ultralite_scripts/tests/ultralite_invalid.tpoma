@@ -1,0 +1,233 @@
+# INVALIDS: all the test here shouldn´t go past and execute any commands.
+# After every Ultralite call ?Period: Should still be 10.
+
+# ---- C1: index 0 reservado (set 0x80)
+# : 80 04 00 00 00 05
+0.0|=Period 10
+# expect: ACK: done
+2.0|=Ultralite 8004000000050000000000000000000000000001
+# expect: ACK: done
+4.0|?Period
+# expect: ACK: 10
+
+# ---- C2: Query unknown (query index 3)
+# : 03
+6.0|=Period 10
+# expect: ACK: done
+8.0|=Ultralite 0300000000000000000000000000000000000001
+# expect: ACK: done
+10.0|?Period
+# expect: ACK: 10
+
+# ---- C3: topic unknown (set index 3)
+# : 83 04 00 00 00 01
+12.0|=Period 10
+# expect: ACK: done
+14.0|=Ultralite 8304000000010000000000000000000000000001
+# expect: ACK: done
+16.0|?Period
+# expect: ACK: 10
+
+# ---- C4: index max 127 (query 0x7F) (Still unknown topic)
+# : 7F
+18.0|=Period 10
+# expect: ACK: done
+20.0|=Ultralite 7F00000000000000000000000000000000000001
+# expect: ACK: done
+22.0|?Period
+# expect: ACK: 10
+
+# ---- C5: index max 127 (set 0xFF) (Still unknown topic)
+# : FF 04 00 00 00 01
+24.0|=Period 10
+# expect: ACK: done
+26.0|=Ultralite FF04000000010000000000000000000000000001
+# expect: ACK: done
+28.0|?Period
+# expect: ACK: 10
+
+# ---- C6: query DeepSleep (Doesnt have getter)
+# : 02
+30.0|=Period 10
+# expect: ACK: done
+32.0|=Ultralite 0200000000000000000000000000000000000001
+# expect: ACK: done
+34.0|?Period
+# expect: ACK: 10
+
+# ---- C7: set with N = 0
+# : 81 00
+36.0|=Period 10
+# expect: ACK: done
+38.0|=Ultralite 8100000000000000000000000000000000000001
+# expect: ACK: done
+40.0|?Period
+# expect: ACK: 10
+
+# ---- C8: set with N = 19 ( past the limit of N)
+# : 81 13 ...
+42.0|=Period 10
+# expect: ACK: done
+44.0|=Ultralite 8113000000000000000000000000000000000001
+# expect: ACK: done
+46.0|?Period
+# expect: ACK: 10
+
+# ---- C9: set with N = 255
+# : 81 FF ...
+48.0|=Period 10
+# expect: ACK: done
+50.0|=Ultralite 81FF000000000000000000000000000000000001
+# expect: ACK: done
+52.0|?Period
+# expect: ACK: 10
+
+# ---- C11: N = 5, More than max of topic (4)
+# : 81 05 00 00 00 00 05
+54.0|=Period 10
+# expect: ACK: done
+56.0|=Ultralite 8105000000000500000000000000000000000001
+# expect: ACK: done
+58.0|?Period
+# expect: ACK: 10
+
+# ---- C12: N = 18 (max of N, but topic Period maximum is 4)
+# : 81 12 ...
+60.0|=Period 10
+# expect: ACK: done
+62.0|=Ultralite 8111000000000000000000000000000000000001
+# expect: ACK: done
+64.0|?Period
+# expect: ACK: 10
+
+# ---- C13: set goes past byte 20 (starts at byte 16)
+# : 16 x 01 | 81 04 00 00
+66.0|=Period 10
+# expect: ACK: done
+68.0|=Ultralite 0101010101010101010101010101010181040000
+# expect: ACK: done
+70.0|?Period
+# expect: ACK: 10
+
+# ---- C13b: set does past exactly 1 byte (starts at byte 15)
+# : 15 x 01 | 81 04 00 00 00
+# limit case: 21 bytes, 1 more than the limit
+72.0|=Period 10
+# expect: ACK: done
+74.0|=Ultralite 0101010101010101010101010101018104000000
+# expect: ACK: done
+76.0|?Period
+# expect: ACK: 10
+
+# ---- C14: header of set on byte 19
+# : 19 x 01 | 81
+84.0|=Period 10
+# expect: ACK: done
+86.0|=Ultralite 0101010101010101010101010101010101010181
+# expect: ACK: done
+88.0|?Period
+# expect: ACK: 10
+
+# ---- C15: padding dirty: different than 0x00 padding at the end
+# : 01 00 ... 00 01
+90.0|=Period 10
+# expect: ACK: done
+92.0|=Ultralite 0100000000000000000000000000000000000101
+# expect: ACK: done
+94.0|?Period
+# expect: ACK: 10
+
+# ---- C16: padding dirty: justo despues de un registro
+# : 01 00 00 AA
+96.0|=Period 10
+# expect: ACK: done
+98.0|=Ultralite 0100000000000081010100000000000000000001
+# expect: ACK: done
+100.0|?Period
+# expect: ACK: 10
+
+# ---- C17: set valid + topic unknown
+# : set Period 99 | 63
+102.0|=Period 10
+# expect: ACK: done
+104.0|=Ultralite 8101636300000000000000000000000000000002
+# expect: ACK: done
+106.0|?Period
+# expect: ACK: 10
+
+# ---- C18:  set valid + query without getter
+# : set Period 99 | 02
+108.0|=Period 10
+# expect: ACK: done
+110.0|=Ultralite 8101630200000000000000000000000000000002
+# expect: ACK: done
+112.0|?Period
+# expect: ACK: 10
+
+# ---- C19: set valid + goes past 20
+# : set Period 99 | 13 x 01 | 81 04 00 00
+114.0|=Period 10
+# expect: ACK: done
+116.0|=Ultralite 8101630101010101010101010101010181040000
+# expect: ACK: done
+118.0|?Period
+# expect: ACK: 10
+
+# ---- C20: set valid + padding dirty
+# : set Period 99 | 00 00 AA
+120.0|=Period 10
+# expect: ACK: done
+122.0|=Ultralite 8101630000AA0000000000000000000000000001
+# expect: ACK: done
+124.0|?Period
+# expect: ACK: 10
+
+# ---- C21: set valid + set with N greater than maximum
+# : set Period 99 | 81 05 00 00 00 00 05
+126.0|=Period 10
+# expect: ACK: done
+128.0|=Ultralite 8101638105000000000500000000000000000002
+# expect: ACK: done
+130.0|?Period
+# expect: ACK: 10
+
+# : =Ultralite
+132.0|=Period 10
+# expect: ACK: done
+134.0|=Ultralite
+# expect: ACK: done
+136.0|?Period
+# expect: ACK: 10
+
+# (19 bytes)
+138.0|=Period 10
+# expect: ACK: done
+140.0|=Ultralite 81016300000000000000000000000000000000
+# expect: ACK: done
+142.0|?Period
+# expect: ACK: 10
+
+#(21 bytes)
+144.0|=Period 10
+# expect: ACK: done
+146.0|=Ultralite 810163000000000000000000000000000000000001
+# expect: ACK: done
+148.0|?Period
+# expect: ACK: 10
+
+# not hexadecimal (G)
+# : G + 39 hex
+150.0|=Period 10
+# expect: ACK: done
+152.0|=Ultralite G101630000000000000000000000000000000001
+# expect: ACK: done
+154.0|?Period
+# expect: ACK: 10
+
+# spacies in between bytes 
+156.0|=Period 10
+# expect: ACK: done
+158.0|=Ultralite 81 01 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+# expect: ACK: done
+160.0|?Period
+# expect: ACK: 10

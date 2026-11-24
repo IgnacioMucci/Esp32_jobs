@@ -1,0 +1,1120 @@
+[
+ {
+  "file": "ultralite_valid",
+  "id": "A1",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0100000000000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_valid",
+  "id": "A2",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81020E1000000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 3600"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_valid",
+  "id": "A3",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0181017801000000000000000000000000000000",
+    [
+     "ACK: ok: 3 command(s)",
+     "10",
+     "done",
+     "120"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 120"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_valid",
+  "id": "A4",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81020e1000000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 3600"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_valid",
+  "id": "A6",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101018102000281030000038104000000040101",
+    [
+     "ACK: ok: 6 command(s)",
+     "done",
+     "done",
+     "done",
+     "done",
+     "4",
+     "4"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 4"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_valid",
+  "id": "A5",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0000000000000000000000000000000000000000",
+    [
+     "ACK: ok: 0 command(s)"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B1",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0101010101010101010101010101010101010101",
+    [
+     "ACK: ok: 20 command(s)",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B2",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8104000000018104000000028104000000030101",
+    [
+     "ACK: ok: 5 command(s)",
+     "done",
+     "done",
+     "done",
+     "3",
+     "3"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 3"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B3",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0101010101010101010101010101810400000007",
+    [
+     "ACK: ok: 15 command(s)",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "10",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 7"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B4",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8104000000080101010101010101010101010101",
+    [
+     "ACK: ok: 15 command(s)",
+     "done",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8",
+     "8"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 8"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B4b",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101018101028101038101048101058101060101",
+    [
+     "ACK: ok: 8 command(s)",
+     "done",
+     "done",
+     "done",
+     "done",
+     "done",
+     "done",
+     "6",
+     "6"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 6"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B5",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101010000000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 1"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B6",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81032697B0000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 2529200"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B7",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81032697B1000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B8",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8104FFFFFFFF0000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_boundary",
+  "id": "B9",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101000000000000000000000000000000000000",
+    [
+     "ACK: ok: 1 command(s)",
+     "done"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C1",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8004000000050000000000000000000000000000",
+    [
+     "ACK: error: reserved index 0"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C2",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0300000000000000000000000000000000000000",
+    [
+     "ACK: error: unknown topic"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C3",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8304000000010000000000000000000000000000",
+    [
+     "ACK: error: unknown topic"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C4",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 7F00000000000000000000000000000000000000",
+    [
+     "ACK: error: unknown topic"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C5",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite FF04000000010000000000000000000000000000",
+    [
+     "ACK: error: unknown topic"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C6",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0200000000000000000000000000000000000000",
+    [
+     "ACK: error: topic has no getter"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C7",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8100000000000000000000000000000000000000",
+    [
+     "ACK: error: bad set length"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C8",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8113000000000000000000000000000000000000",
+    [
+     "ACK: error: bad set length"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C9",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81FF000000000000000000000000000000000000",
+    [
+     "ACK: error: bad set length"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C11",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8105000000000500000000000000000000000000",
+    [
+     "ACK: error: length exceeds topic size"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C12",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8112000000000000000000000000000000000000",
+    [
+     "ACK: error: length exceeds topic size"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C13",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0101010101010101010101010101010181040000",
+    [
+     "ACK: error: record overruns frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C13b",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0101010101010101010101010101018104000000",
+    [
+     "ACK: error: record overruns frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C14",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0101010101010101010101010101010101018104",
+    [
+     "ACK: error: record overruns frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C15",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0101010101010101010101010101010101010181",
+    [
+     "ACK: error: truncated set header"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C16",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0100000000000000000000000000000000000001",
+    [
+     "ACK: error: dirty padding"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C17",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 010000AA00000000000000000000000000000000",
+    [
+     "ACK: error: dirty padding"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C18",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101636300000000000000000000000000000000",
+    [
+     "ACK: error: unknown topic"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C19",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101630200000000000000000000000000000000",
+    [
+     "ACK: error: topic has no getter"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C20",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101630101010101010101010101010181040000",
+    [
+     "ACK: error: record overruns frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C21",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101630000AA0000000000000000000000000000",
+    [
+     "ACK: error: dirty padding"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "C22",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 8101638105000000000500000000000000000000",
+    [
+     "ACK: error: length exceeds topic size"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "T1",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite",
+    [
+     "ACK: error: bad hex frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "T2",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81016300000000000000000000000000000000",
+    [
+     "ACK: error: bad hex frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "T3",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 810163000000000000000000000000000000000000",
+    [
+     "ACK: error: bad hex frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "T4",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite G101630000000000000000000000000000000000",
+    [
+     "ACK: error: bad hex frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "T5",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 81 01 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+    [
+     "ACK: error: bad hex frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ },
+ {
+  "file": "ultralite_invalid",
+  "id": "T6",
+  "steps": [
+   [
+    "=Period 10",
+    [
+     "ACK: done"
+    ]
+   ],
+   [
+    "=ultralite 0x01630000000000000000000000000000000000",
+    [
+     "ACK: error: bad hex frame"
+    ]
+   ],
+   [
+    "?Period",
+    [
+     "ACK: 10"
+    ]
+   ]
+  ]
+ }
+]

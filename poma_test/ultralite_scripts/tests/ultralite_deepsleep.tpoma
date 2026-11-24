@@ -1,0 +1,7 @@
+# ESP32 sleeps 5 s and reboots: TCP connection is cutted of
+# set DeepSleep 5 | set Period 77
+# Expecter: sleeps, and 'set Period 77' doesnt execute.
+0.0|=Period 10
+# expect: ACK: done
+2.0|=Ultralite 82010581014D0000000000000000000000000002
+# expect: ACK: done

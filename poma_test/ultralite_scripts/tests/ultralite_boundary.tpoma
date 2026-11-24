@@ -1,0 +1,158 @@
+# LIMITS: max comands,max frames , values min/max.
+
+
+# ---- B1: max de comands: 19 queries, no padding
+# : 20 x query Period
+0.0|=Period 10
+# expect: ACK: done
+2.0|=Ultralite 01010101010101010101010101010101010113
+# expect: ACK: done
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+
+# ---- B2:  FULL: 3 sets de N=4 + 1 queries (20 bytes)
+# : set 1 (N=4) | set 2 (N=4) | set 3 (N=4) | query 
+4.0|=Period 10
+# expect: ACK: done
+6.0|=Ultralite 8104000000018104000000028104000000030104
+# expect: ACK: done
+# also:   done
+# also:   done
+# also:   done
+# also:   3
+# also:   3
+8.0|?Period
+# expect: ACK: 3
+
+# ---- B3: set ends at byte 19
+# : 14 x query | set Period 7 (N=4)
+10.0|=Period 10
+# expect: ACK: done
+12.0|=Ultralite 010101010101010101010101010181030000070F
+# expect: ACK: done
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   10
+# also:   done
+14.0|?Period
+# expect: ACK: 7
+
+# ---- B4: query on byte 19
+# : set Period 8 (N=4) | 13 x query
+16.0|=Period 10
+# expect: ACK: done
+18.0|=Ultralite 810400000008010101010101010101010101010E
+# expect: ACK: done
+# also:   done
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+# also:   8
+20.0|?Period
+# expect: ACK: 8
+
+# ---- B5: 6 sets of 1 byte + 1 queries (20 bytes)
+# : set 1 | set 2 | ... | set 6 ( set = 3 bytes) | query 
+22.0|=Period 10
+# expect: ACK: done
+24.0|=Ultralite 8101018101028101038101048101058101060107
+# expect: ACK: done
+# also:   done
+# also:   done
+# also:   done
+# also:   done
+# also:   done
+# also:   done
+# also:   6
+# also:   6
+26.0|?Period
+# expect: ACK: 6
+
+# ---- B6: minimum value of Period (1)
+# : set Period 1
+28.0|=Period 10
+# expect: ACK: done
+30.0|=Ultralite 8101010000000000000000000000000000000001
+# expect: ACK: done
+# also:   done
+32.0|?Period
+# expect: ACK: 1
+
+# ---- B7:max value Period accepts (MAX_TIME)
+# : set Period 2529200
+34.0|=Period 10
+# expect: ACK: done
+36.0|=Ultralite 81032697B0000000000000000000000000000001
+# expect: ACK: done
+# also:   done
+38.0|?Period
+# expect: ACK: 2529200
+
+# ---- B8: Period goes past max: entry valid but setter doesnt change value
+# : set Period 2529201
+40.0|=Period 10
+# expect: ACK: done
+42.0|=Ultralite 81032697B1000000000000000000000000000001
+# expect: ACK: done
+# also:   done
+44.0|?Period
+# expect: ACK: 10
+
+# ---- B9: Period = 0xFFFFFFFF: el setter ignores it
+# : set Period 4294967295
+46.0|=Period 10
+# expect: ACK: done
+48.0|=Ultralite 8104FFFFFFFF0000000000000000000000000001
+# expect: ACK: done
+# also:   done
+50.0|?Period
+# expect: ACK: 10
+
+# ---- B10: Period = 0: el setter ignores it
+# : set Period 0
+52.0|=Period 10
+# expect: ACK: done
+54.0|=Ultralite 8101000000000000000000000000000000000001
+# expect: ACK: done
+# also:   done
+56.0|?Period
+# expect: ACK: 10

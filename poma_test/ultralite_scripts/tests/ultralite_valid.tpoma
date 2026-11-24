@@ -1,0 +1,63 @@
+# Tramas VALIDAS: operaciones y parametros admitidos.
+# Formato:  TIMESTAMP|COMANDO   ('# expect:' = primera linea esperada).
+
+# ---- A1: One query
+# query Period
+0.0|=Period 10
+# expect: ACK: done
+2.0|=Ultralite 0100000000000000000000000000000000000001
+# expect: ACK: done
+# also:   10
+
+# ---- A2: One set, 
+#  set Period 3600
+4.0|=Period 10
+# expect: ACK: done
+6.0|=Ultralite 81020E1000000000000000000000000000000001
+# expect: ACK: done
+# also:   done
+8.0|?Period
+# expect: ACK: 3600
+
+# ---- A3: query, set, query
+# : query Period | set Period 120 | query Period
+10.0|=Period 10
+# expect: ACK: done
+12.0|=Ultralite 0181017801000000000000000000000000000003
+# expect: ACK: done
+# also:   10
+# also:   done
+# also:   120
+14.0|?Period
+# expect: ACK: 120
+
+# ---- A4: hex lowercase
+# : set Period 3600 
+16.0|=Period 10
+# expect: ACK: done
+18.0|=Ultralite 81020e1000000000000000000000000000000001
+# expect: ACK: done
+# also:   done
+20.0|?Period
+# expect: ACK: 3600
+
+# ---- A6: variable long : values 1,2,3,4 using N = 1,2,3,4 
+# : set 1 (N=1) | set 2 (N=2) | set 3 (N=3) | set 4 (N=4) | query 
+22.0|=Period 10
+# expect: ACK: done
+24.0|=Ultralite 8101018102000281030000038104000000040105
+# expect: ACK: done
+# also:   done
+# also:   done
+# also:   done
+# also:   done
+# also:   4
+# also:   4
+26.0|?Period
+# expect: ACK: 4
+
+# ---- A5:  empty (all padding)
+28.0|=Period 10
+# expect: ACK: done
+30.0|=Ultralite 0000000000000000000000000000000000000000
+# expect: ACK: done
