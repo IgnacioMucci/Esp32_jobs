@@ -5,7 +5,7 @@
 # : 20 x query Period
 0.0|=Period 10
 # expect: ACK: done
-2.0|=Ultralite 01010101010101010101010101010101010113
+2.0|=Ultralite 0101010101010101010101010101010101010113
 # expect: ACK: done
 # also:   10
 # also:   10
@@ -127,7 +127,7 @@
 38.0|?Period
 # expect: ACK: 2529200
 
-# ---- B8: Period goes past max: entry valid but setter doesnt change value
+# ---- B8: Period goes past max: entry valid but setter changes value to maximum
 # : set Period 2529201
 40.0|=Period 10
 # expect: ACK: done

@@ -57,23 +57,31 @@ class PomaDebugClient:
             self.socket.settimeout(timeout)
             accumulated_data = ""
 
-            # Read data until a '\n' is received.
-            while True:
+            # 1) Wait for the first complete line (same as before).
+            while '\n' not in accumulated_data:
                 chunk = self.socket.recv(self.buffer_size)
                 if not chunk:
                     self.logger.warning("Connection closed by server.")
                     self.connected = False
-                    return ""
+                    return accumulated_data
+                accumulated_data += chunk.decode('utf-8', errors='ignore')
 
-                decoded_chunk = chunk.decode('utf-8', errors='ignore')
-                accumulated_data += decoded_chunk
+            # 2) Some commands (like Ultralite) answer with several lines:
+            #    keep reading until the server stays quiet for a short time.
+            self.socket.settimeout(0.3)
+            try:
+                while True:
+                    chunk = self.socket.recv(self.buffer_size)
+                    if not chunk:
+                        self.connected = False
+                        break
+                    accumulated_data += chunk.decode('utf-8', errors='ignore')
+            except socket.timeout:
+                pass   # nothing more arrived: the response is complete
 
-                # Check if we received the newline terminator.
-                if '\n' in accumulated_data:
-                    # Extract the message up to and including '\n'.
-                    message = accumulated_data.split('\n', 1)[0] + '\n'
-                    self.logger.received(message)
-                    return message
+            for line in accumulated_data.splitlines():
+                self.logger.received(line + '\n')
+            return accumulated_data
 
         except socket.timeout:
             self.logger.warning("Timeout esperando respuesta")

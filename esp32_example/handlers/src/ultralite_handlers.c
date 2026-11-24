@@ -94,5 +94,5 @@ void setterUltralite(int sockfd, char *argument)
 
     /* Stage 3: execution (bad commands are skipped inside). Right now is called with ULTRALITE_NO_REPLY_FD so that
     * it doesn't reply through the client socket. To allow it change it for sockfd */
-    ultralite_execute(ULTRALITE_NO_REPLY_FD, cmds, count);
+    ultralite_execute(sockfd, cmds, count);
 }
